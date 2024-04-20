@@ -6,11 +6,10 @@ import './App.css'
 export default function App() {
   
   return (
-    <>
-      <div >
-        <Header />
-        <Meme />
-      </div>
-    </>
+    <div >
+      <Header />
+      <Meme />
+      <Header />
+    </div>
   )
 }

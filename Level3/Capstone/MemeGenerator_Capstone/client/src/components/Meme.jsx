@@ -92,7 +92,7 @@ export default function Meme() {
                     onChange={handleChange}
                 />
                 <button className="meme-button" onClick={getMemeImage}>
-                    Get A New Meme. 🖼
+                    Get A New Meme. 
                 </button>
             </div>
 
@@ -104,7 +104,7 @@ export default function Meme() {
                 </div>
             </div>
 
-            <div className='sdbuttons-container'>
+            {/* <div className='sdbuttons-container'>
                 <button className='saved-meme-button' onClick={saveEditedMeme}>
                     Save Edited Meme.
                 </button>
@@ -112,7 +112,7 @@ export default function Meme() {
                 <button className='delete-saved-meme-button' onClick={deleteSavedMeme}>
                     Delete Edited Meme.
                 </button>
-            </div>
+            </div> */}
 
             <div className='saved-memes-container'>
                 <h2>Saved Memes</h2>
@@ -120,6 +120,7 @@ export default function Meme() {
                     {savedMemes.map((savedMeme, index) => (
                         <li key={index}>
                             <button className='edit-meme-button' onClick={() => editSavedMeme(savedMeme)}>Edit Meme</button>
+                            <button className='delete-saved-meme-button' onClick={() => deleteSavedMeme(deleteSavedMeme)}>Delete Meme</button>
                             <span>{savedMeme.topText}</span>
                             <span>{savedMeme.bottomText}</span>
                         </li>
