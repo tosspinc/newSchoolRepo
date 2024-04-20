@@ -35,7 +35,7 @@
   width: 100%;
 }
 
-.sdbutton-container {
+.sdbuttons-container {
   display: flex;
   justify-content: center;
   margin-top: 12px;

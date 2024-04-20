@@ -40,6 +40,15 @@ function handleChange(event) {
     }))
 }
 
+//function saves the edited meme.
+function saveEditedMeme() {
+    //converts meme data to a json string.
+    const editedMemeJson = JSON.stringify(meme)
+    //saves edited meme to local memory.
+    localStorage.setItem('EditedMeme', editedMemeJson)
+    alert('Meme saved successfuly')
+}
+
 return (
     <main>
         <div className="form">
@@ -64,6 +73,11 @@ return (
                 onClick={getMemeImage}
             >
                 Get a new meme image 🖼
+            </button>
+            <button
+                className='form-button'
+                onClick={saveEditedMeme}
+            >Save Edited Meme
             </button>
         </div>
         <div className="meme">

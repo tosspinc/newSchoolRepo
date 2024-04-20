@@ -34,7 +34,7 @@ export default function Meme() {
         } catch (error) {
             console.error('Error fetching meme: ', error);
         }
-    }
+    }   
 
     function handleChange(event) {
         const {name, value} = event.target;
