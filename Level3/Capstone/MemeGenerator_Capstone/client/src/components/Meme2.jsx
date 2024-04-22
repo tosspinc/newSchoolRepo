@@ -1,17 +1,23 @@
+//import necessary library tools from react for project.
 import React, {useState} from "react"
 
+//declare Meme2 function.
 export default function Meme2(){
 
+    //define inital state of Meme2
     const initialMemeState = {
         topText: '',
         bottomText: '',
         randomImage: 'http://i.imgflip.com/1bij.jpg'
     };
 
+    //utilize useState reach hook.
+    //initialize initial arrays and variables.
     const [meme, setMeme] = useState(initialMemeState);
     const [savedMemes, setSavedMemes] = useState([]);
     const [selectedMemeIndex, setSelectedMemeIndex] = useState(null);
 
+    //fetch the meme images from url (API) and handle errors.
     async function getMemeImage() {
         try {
             console.log("get")
@@ -28,6 +34,7 @@ export default function Meme2(){
         }
     }   
 
+    //defining handleChange
     function handleChange(event) {
         const {name, value} = event.target;
         setMeme(prevMeme => ({
@@ -73,11 +80,11 @@ export default function Meme2(){
     return (
         <main>
             <form onSubmit={handleSubmit}>
-                <input name="topText" value={meme.topText} onChange={handleChange} />
-                <input name="bottomText" value={meme.bottomText} onChange={handleChange} />
-                <button>Add Meme</button>
+                <input className='meme-input' name="topText" value={meme.topText} onChange={handleChange} placeholder='Top Line Text'/>
+                <input className='meme-input' name="bottomText" value={meme.bottomText} onChange={handleChange} placeholder='Bottom Line Text'/>
+                <button className="addMeme-button">Add Meme</button>
             </form>
-            <button onClick={getMemeImage}>
+            <button className="getNewMeme-button" onClick={getMemeImage}>
                 Get A New Meme. 
             </button>
 
@@ -86,20 +93,41 @@ export default function Meme2(){
                 <h1>{meme.bottomText}</h1>
             </div>
 
-            <div className="saved-memes-container">
+            {/* <div className="saved-memes-container">
                 <h1>Saved Memes</h1>
                 <ul>
                     {savedMemes.map((savedMeme, index) => (
-                        <li key={index}>    
-                            <div style={{backgroundImage: `url(${savedMeme.randomImage})`, height: "300px", width: "300px"}}>
-                                <button className="edit-meme-button" onClick={() => editSavedMeme(index)}>Edit Meme</button>
-                                <button className="delete-saved-meme-button" onClick={() => deleteSavedMeme(index)}>Delete Meme</button>
+                        <li key={index} className="saved-meme">    
+                            <div className="saved-meme-image" style={{backgroundImage: `url(${savedMeme.randomImage})`, height: "300px", width: "300px"}}></div>
+                            <div className="saved-meme-text">
                                 <h1>{savedMeme.topText}</h1>
                                 <h1>{savedMeme.bottomText}</h1>
+                            </div>
+                            <div className="saved-meme-buttons">
+                                <button className="edit-meme-button" onClick={() => editSavedMeme(index)}>Edit Meme</button>
+                                <button className="delete-saved-meme-button" onClick={() => deleteSavedMeme(index)}>Delete Meme</button>
                             </div>
                         </li>
                     ))}
                 </ul>        
+            </div> */}
+            <div className="saved-memes-container">
+                <h1>Saved Memes</h1>
+                <ul>
+                    {savedMemes.map((savedMeme, index) => (
+                    <li key={index} className="saved-meme"> {/* Add class here */}
+                    <div className="saved-meme-image" style={{backgroundImage: `url(${savedMeme.randomImage})`}}></div>
+                    <div className="saved-meme-text">
+                        <h1>{savedMeme.topText}</h1>
+                        <h1>{savedMeme.bottomText}</h1>
+                    </div>
+                    <div className="saved-meme-buttons">
+                        <button className="edit-meme-button" onClick={() => editSavedMeme(index)}>Edit Meme</button>
+                        <button className="delete-saved-meme-button" onClick={() => deleteSavedMeme(index)}>Delete Meme</button>
+                    </div>
+                    </li>
+                    ))}
+                </ul>
             </div>
         </main>
     )
