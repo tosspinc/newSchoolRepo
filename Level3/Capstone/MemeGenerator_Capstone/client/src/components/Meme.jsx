@@ -7,29 +7,30 @@ export default function Meme() {
         randomImage: 'http://i.imgflip.com/1bij.jpg'
     });
 
+    console.log(meme)
+
     const [savedMemes, setSavedMemes] = useState([]);
 
-    useEffect(() => { 
-        // Retrieves saved memes from local storage.
-        const savedMemesJson = localStorage.getItem('SavedMemes');
-        if (savedMemesJson) {
-            const savedMemesArray = JSON.parse(savedMemesJson);
-            setSavedMemes(savedMemesArray);
-        }
-    }, []);
+    // useEffect(() => { 
+    //     // Retrieves saved memes from local storage.
+    //     const savedMemesJson = localStorage.getItem('SavedMemes');
+    //     if (savedMemesJson) {
+    //         const savedMemesArray = JSON.parse(savedMemesJson);
+    //         setSavedMemes(savedMemesArray);
+    //     }
+    // }, []);
 
     // Gets new meme image.
     async function getMemeImage() {
         try {
+            console.log("get")
             const res = await fetch("https://api.imgflip.com/get_memes");
             const data = await res.json();
             const randomNumber = Math.floor(Math.random() * data.data.memes.length);
             const randomMeme = data.data.memes[randomNumber];
             setMeme(prevMeme => ({
                 ...prevMeme,
-                randomImage: randomMeme.url,
-                topText: '',
-                bottomText: ''
+                randomImage: randomMeme.url
             }));
         } catch (error) {
             console.error('Error fetching meme: ', error);
@@ -74,7 +75,7 @@ export default function Meme() {
 
     return (
         <main>
-            <div className="meme-form-container">
+            {/* <div className="meme-form-container">
                 <input 
                     type="text" 
                     placeholder="Top Text"
@@ -91,10 +92,12 @@ export default function Meme() {
                     value={meme.bottomText}
                     onChange={handleChange}
                 />
-                <button className="meme-button" onClick={getMemeImage}>
-                    Get A New Meme. 
-                </button>
-            </div>
+            </div> */}
+
+            <button onClick={getMemeImage}>
+                Get A New Meme. 
+            </button>
+            <input />
 
             <div className="meme-container">
                 <img src={meme.randomImage} className="meme-image" alt="Meme" />
@@ -114,20 +117,20 @@ export default function Meme() {
                 </button>
             </div> */}
 
-            <div className='saved-memes-container'>
+            {/* <div className='saved-memes-container'>
                 <h2>Saved Memes</h2>
                 <ul>
                     {savedMemes.map((savedMeme, index) => (
                         <li key={index}>
-                            <button className='edit-meme-button' onClick={() => editSavedMeme(savedMeme)}>Edit Meme</button>
-                            <button className='delete-saved-meme-button' onClick={() => deleteSavedMeme(deleteSavedMeme)}>Delete Meme</button>
+                            <button className='edit-meme-button' onClick={() => editSavedMeme(saveEditedMeme)}>Edit Meme</button>
+                            <button className='delete-saved-meme-button' onClick={() => deleteSavedMeme(index)}>Delete Meme</button>
                             <span>{savedMeme.topText}</span>
                             <span>{savedMeme.bottomText}</span>
                         </li>
                     ))}
                 </ul>
                 {savedMemes.length === 0 && <p>No saved memes yet.</p>}
-            </div>
+            </div> */}
         </main>
     );
 }

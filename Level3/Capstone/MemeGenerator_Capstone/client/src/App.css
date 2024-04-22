@@ -78,8 +78,7 @@
   height: 50px;
 }
 
-.saved-meme-button,
-.delete-saved-meme-button {
+.saved-meme-button {
   font-family: "Karla", sans-serif;
   font-weight: bold;
   font-size: 24px;
@@ -93,7 +92,8 @@
   width: 600px;
 }
 
-.edit-meme-button {
+.edit-meme-button,
+.delete-saved-meme-button {
   margin: 3px 6px;
   padding: 3px 3px;
   background-color: lightblue;
