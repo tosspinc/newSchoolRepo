@@ -82,7 +82,7 @@ export default function Meme2(){
             <form onSubmit={handleSubmit}>
                 <input className='meme-input' name="topText" value={meme.topText} onChange={handleChange} placeholder='Top Line Text'/>
                 <input className='meme-input' name="bottomText" value={meme.bottomText} onChange={handleChange} placeholder='Bottom Line Text'/>
-                <button className="addMeme-button">Add Meme</button>
+                <button className="addMeme-button">Save Meme</button>
             </form>
             <button className="getNewMeme-button" onClick={getMemeImage}>
                 Get A New Meme. 
@@ -93,24 +93,6 @@ export default function Meme2(){
                 <h1>{meme.bottomText}</h1>
             </div>
 
-            {/* <div className="saved-memes-container">
-                <h1>Saved Memes</h1>
-                <ul>
-                    {savedMemes.map((savedMeme, index) => (
-                        <li key={index} className="saved-meme">    
-                            <div className="saved-meme-image" style={{backgroundImage: `url(${savedMeme.randomImage})`, height: "300px", width: "300px"}}></div>
-                            <div className="saved-meme-text">
-                                <h1>{savedMeme.topText}</h1>
-                                <h1>{savedMeme.bottomText}</h1>
-                            </div>
-                            <div className="saved-meme-buttons">
-                                <button className="edit-meme-button" onClick={() => editSavedMeme(index)}>Edit Meme</button>
-                                <button className="delete-saved-meme-button" onClick={() => deleteSavedMeme(index)}>Delete Meme</button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>        
-            </div> */}
             <div className="saved-memes-container">
                 <h1>Saved Memes</h1>
                 <ul>
