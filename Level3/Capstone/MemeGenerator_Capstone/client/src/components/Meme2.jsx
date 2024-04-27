@@ -72,9 +72,12 @@ export default function Meme2(){
     }
 
     function deleteSavedMeme(index) {
-        const updatedMemes = [...savedMemes]
-        updatedMemes.splice(index, 1)
-        setSavedMemes(updatedMemes)
+        //this code replaces what I did below it.
+        setSavedMemes(prevSavedMemes => prevSavedMemes.filter((meme, pos) => pos !== index && meme))
+        //my previous code - not appropriate to use.
+        // const updatedMemes = [...savedMemes]
+        // updatedMemes.splice(index, 1)
+        // setSavedMemes(updatedMemes)
     }
 
     return (
