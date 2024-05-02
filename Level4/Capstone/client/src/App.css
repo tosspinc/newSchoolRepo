@@ -15,7 +15,13 @@
   /* background-color: #040406; */
 }
 
+.navleft-company-logo {
+  background-color: rgb(48, 213, 200);
+}
 
+.navcenter-search, .search-container{
+  background-color: rgb(48, 213, 200);
+}
 /*Navigation search all button*/
 .all {
   margin-top: 7px;
@@ -24,11 +30,11 @@
   /* background-color: black; */
   color: bisque;
   border-radius: 5px 0 0 5px;
-  border: 1px solid black;
+  border: 1px solid bisque;
   outline: none;
   cursor: pointer;
   padding: 10px;
-  background-color: rgb(48, 213, 200);
+  background-color: #594D5B;
   height: 45px;
   /* background-color: black; */
 }
@@ -46,9 +52,9 @@ nav input {
 }
 
 nav button.search {
-  background-color: rgb(48, 213, 200);
+  background-color: #594D5B;
   border-radius: 0 5px 5px 0;
-  border: 1px solid black;
+  border: 1px solid bisque;
   outline: none;
   padding: 10px;
   cursor: 10px;
@@ -57,25 +63,48 @@ nav button.search {
   margin-right: 10px;
 }
 
-
-/*bottom row of navigation bar*/
-.navbar-bottom {
-  z-index: 1000;
-  margin-top: 0;
-  margin-left: 0;
-  padding: 0;
-  height: 60px;
-  width: 100%;
-  background-color: #594D5B
-}
-
-.navright-login {
+.navright-login, .navright-shopping-cart {
   display: flex;
   align-items: center;
+  background-color: rgb(48, 213, 200);
+}
+
+/*bottom row of navigation bar*/
+.navbar-bottom-container {
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+  height: 70px;
+  width: 100%;
+  background-color: #594D5B;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.womens-clothing, .mens-clothing, .baby-items, .shoes, .household-goods, .pet-products,.electronic-goods, .toy-products, .media-products, .books, .sports-products, .all-products {
+  margin-top: 0;
+  margin-left: 0;
+  padding: 10px;
+  height: 40px;
+  width: 90px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #594D5B;
+  color: bisque;
 }
 
 .item {
-  padding: 10px 10px;
+  padding: 10px;
+  height: 40px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #594D5B;
+  color: bisque;
+  margin: 5px;
 }
 
 .item:hover {
@@ -152,15 +181,17 @@ h5 {
   height: 50px;
   width: 90px;
   margin-left: auto; /*pushes logo img to the right*/
+  background-color: rgb(48, 213, 200);
 }
 
 .cart-logo {
-  margin-top: 1px;
+  margin 0;
   margin-right: -2px;
-  height: 50px;
+  height: 55px;
   width: 60px;
   margin-left: auto; /*pushes logo img to the right*/
-  padding: 2px;
+  padding: 0;
+  background-color: rgb(48, 213, 200);
 }
 
 /*Footer*/

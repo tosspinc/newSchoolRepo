@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
        <>
             <div>
                 <nav className="navbar-top">
-                    <div className="navleft-company-logos">
-                        <img src="./src/assets/Imgs/Tosspi_Logo.png" className="tosspi-bag-logo" />
+                    <div className="navleft-company-logo">
                         <img src="./src/assets/Imgs/Transp_Tosspi_logo.png" className="tosspi-logo" />
                     </div>
                     <div className="navcenter-search">
@@ -24,13 +23,6 @@ export default function Navbar() {
                         </div>
                     </div>
                 </nav>
-                <nav className="navbar-bottom">
-                    <div className="main-categories">
-                        <ul>
-
-                        </ul>
-                    </div>
-                </nav>    
             </div>
         </>
     )

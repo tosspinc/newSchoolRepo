@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom'
-// import { Contect} from '../src/context/Context'
+import { Routes, Route  } from 'react-router-dom'
+// import { Context} from '../src/context/Context'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import './App.css'
+import NavbarBottom from './components/NavbarBottom'
 
 export default function App() {
   const [] = useState(0)
@@ -12,6 +13,7 @@ export default function App() {
     <>
       <div className='App'>
         <Navbar />
+        <NavbarBottom />
           <Routes>
             <Route>
               
