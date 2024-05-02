@@ -1,0 +1,184 @@
+/*top row of navigation bar*/
+.navbar-top {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+  margin-left: 0;
+  padding: 0;
+  height: 60px;
+  width: 100%;
+  background-color: rgb(48, 213, 200);
+  /* background-color: #040406; */
+}
+
+
+/*Navigation search all button*/
+.all {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  /* background-color: black; */
+  color: bisque;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid black;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgb(48, 213, 200);
+  height: 45px;
+  /* background-color: black; */
+}
+
+nav input {
+  flex: 1;
+  padding: 10px;
+  font-size: 17px;
+  width: 500px;
+  height: 23px;
+  outline: none;
+  border: 1px solid black;
+  background-color: antiquewhite;
+  color: #000;
+}
+
+nav button.search {
+  background-color: rgb(48, 213, 200);
+  border-radius: 0 5px 5px 0;
+  border: 1px solid black;
+  outline: none;
+  padding: 10px;
+  cursor: 10px;
+  height: 40px;
+  width: 35px;
+  margin-right: 10px;
+}
+
+
+/*bottom row of navigation bar*/
+.navbar-bottom {
+  z-index: 1000;
+  margin-top: 0;
+  margin-left: 0;
+  padding: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #594D5B
+}
+
+.navright-login {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  padding: 10px 10px;
+}
+
+.item:hover {
+  border: 1px solid #fff;
+  border-radius: 2px;
+  margin: 1px;
+}
+
+/*Anchor styling */
+a {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+a:hover {
+  bottom: 1px solid #fff;
+  margin: -1px;
+  background-repeat: 3px;
+}
+
+a:span {
+  font-size: 14px;
+  margin-left: -10px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 5;
+}
+
+h5 {
+  margin: 0;
+  padding: 0;
+}
+
+.item i{
+  padding: 0 5px;
+
+}
+
+/*images*/
+/*top nav bar images*/
+.tosspi-bag-logo {
+  background-color: rgb(48, 213, 200);
+  margin-top: 2px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  margin-left: 0;
+  height: 45px;
+  width: 50px;
+  padding: 5px;
+  float: left;
+}
+
+.tosspi-logo {
+  margin-top: 2px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+  margin-left: 0;
+  height: 50px;
+  padding: 4px;
+  background-color: rgb(48, 213, 200);
+  float: left;
+}
+
+.login-logo {
+  margin-top: 1px;
+  margin-right: 1px;
+  padding: 3px;
+  height: 50px;
+  width: 90px;
+  margin-left: auto; /*pushes logo img to the right*/
+}
+
+.cart-logo {
+  margin-top: 1px;
+  margin-right: -2px;
+  height: 50px;
+  width: 60px;
+  margin-left: auto; /*pushes logo img to the right*/
+  padding: 2px;
+}
+
+/*Footer*/
+.mainfooter {                             /*styling for footer on DOM*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(48, 213, 200);
+  margin-bottom: 0;                   /*places the footer at the bottom of the DOM.*/
+  padding: 5px;
+  height: 30px;
+  text-align: center;
+}
+
+.mainfooter small {
+  background-color: rgb(48, 213, 200);
+}
+
