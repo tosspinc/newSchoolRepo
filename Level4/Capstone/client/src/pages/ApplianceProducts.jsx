@@ -5,7 +5,7 @@ export default function ApplianceProducts() {
         <>
         <div className="appliance-container">
             <div className="appliance-search-container">
-                <h1>Home Appliances</h1>
+                <h1>Home Appliance Products</h1>
             </div>
         </div>
         </>

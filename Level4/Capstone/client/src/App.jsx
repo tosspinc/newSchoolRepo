@@ -4,9 +4,12 @@ import { Routes, Route  } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import ApplianceProducts from './pages/ApplianceProducts'
-import './App.css'
 import NavbarBottom from './components/NavbarBottom'
+import ApplianceProducts from './pages/ApplianceProducts'
+import WomensClothing from './pages/WomensClothing'
+import MensClothing from './pages/MensClothing'
+import KidsProducts from './pages/KidsProducts'
+import './App.css'
 
 export default function App() {
   const [] = useState(0)
@@ -19,6 +22,9 @@ export default function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path="/appliance-products" element={<ApplianceProducts />} />
+            <Route path="/womens-clothing" element={<WomensClothing />} />
+            <Route path="/mens-clothing" element={<MensClothing />} />
+            <Route path="/kids-products" element={<KidsProducts />} />
           </Routes>
         <Footer />
       </div>

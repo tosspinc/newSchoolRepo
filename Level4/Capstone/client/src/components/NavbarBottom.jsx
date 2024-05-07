@@ -5,9 +5,9 @@ export default function NavbarBottom() {
     return (
         <div className="navbar-bottom-container">
             <Link to='/appliance-products' className="item appliance-products">Appliances</Link>
-            <div className="item womens-clothing">Womens</div>
-            <div className="item mens-clothing">Mens</div>
-            <div className="item kids-products">Kids</div>
+            <Link to='/womens-clothing' className="item womens-clothing">Womens</Link>
+            <Link to='/mens-clothing' className="item mens-clothing">Mens</Link>
+            <Link to='/kids-products' className="item kids-products">Kids</Link>
             <div className="item shoes">Shoes</div>
             <div className="item household-goods">Household Goods</div>
             <div className="item pet-products">Pets</div>
