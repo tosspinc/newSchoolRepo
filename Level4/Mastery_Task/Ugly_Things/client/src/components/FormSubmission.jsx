@@ -4,6 +4,21 @@ import { ThemeContext } from '../ThemeContext';
 export default function FormSubmission() {
   const submitHandle = useContext(ThemeContext).addUglyThing;
 
+const [todo, setTodo] = useState({
+  title: "",
+  imgUrl: "",
+  description : ""
+})
+
+const handleChange = (e) => {
+  const {name, value} = e.target;
+  setTodo(prevTodo => {
+    return {
+      ...prevTodo,
+      [name] :value
+    }
+  })
+}
   const [imgUrl, setImgUrl] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -16,8 +31,8 @@ export default function FormSubmission() {
     const imgUrl = formData.get('img_url');
     const title = formData.get('img_title');
     const description = formData.get('img_desc');
-
-    submitHandle(imgUrl, title, description);
+//have one object state.
+    submitHandle(todo);
 
     setImgUrl('');
     setTitle('');
@@ -31,30 +46,29 @@ export default function FormSubmission() {
         <form onSubmit={handleSubmit}>
           <input
             type='url'
-            name='img_url'
+            name='imgUrl'
             className='img_url'
             placeholder='Ugly Image URL'
-            value={imgUrl}
+            value={todo.imgUrl}
             required
-            onChange={(e) => setImgUrl(e.target.value)}
+            onChange={handleChange}
           />
           <input
             type='text'
-            name='img_title'
+            name='title'
             className='img_title'
             placeholder='Name the Image'
-            value={title}
-            required
-            onChange={(e) => setTitle(e.target.value)}
+            value={todo.title}
+            onChange={handleChange}
           />
           <input
             type='textarea'
-            name='img_desc'
+            name='description'
             className='img_desc'
             placeholder='Describe the image'
-            value={description}
+            value={todo.description}
             required
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={handleChange}
           />
           <input type='submit' name='img_submit' className='img_submit' value='Submit Your Image' />
         </form>

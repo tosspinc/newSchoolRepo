@@ -3,6 +3,8 @@ import { Routes, Route  } from 'react-router-dom'
 // import { Context} from '../src/context/Context'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import ApplianceProducts from './pages/ApplianceProducts'
 import './App.css'
 import NavbarBottom from './components/NavbarBottom'
 
@@ -13,11 +15,10 @@ export default function App() {
     <>
       <div className='App'>
         <Navbar />
-        <NavbarBottom />
+        <NavbarBottom />  
           <Routes>
-            <Route>
-              
-            </Route>
+            <Route path='/' element={<Home />} />
+            <Route path="/appliance-products" element={<ApplianceProducts />} />
           </Routes>
         <Footer />
       </div>

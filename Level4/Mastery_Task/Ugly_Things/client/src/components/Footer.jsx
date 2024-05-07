@@ -19,7 +19,7 @@ export default function Footer() {
                     <li><a href='https://www.linkedin.com'><i className='fa fa-linkedin-square'></i></a></li>
                 </ul>
                 <div className={`footer-bottom ${value.value}-mode`}>
-                    <p>copyright &copy;2023 Tosspi Designs Inc. Designed by &nbsp;
+                    <p>copyright &copy;2024 Tosspi Designs Inc.&trade; Designed by &nbsp;
                         <span>
                             <a href="https://tosspidesigns.github.io/">
                                 Tosspi Designs Inc. 

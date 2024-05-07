@@ -12,17 +12,17 @@ function ThemeContextProvider(props) {
       .catch(error => console.error('Error retrieving ugly things:', error));
   }, []);
 
-      const addUglyThing = (imgUrl, title, description) => {
-    const newUglyThing = {
-      imgUrl,
-      title,
-      description,
-    };
+      const addUglyThing = (todo) => {
+    // const newUglyThing = {
+    //   imgUrl,
+    //   title,
+    //   description,
+    // };
 
     fetch('https://api.vschool.io/arnoldjones/thing', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newUglyThing),
+      body: JSON.stringify(todo),
     })
       .then(response => response.json())
       .then(data => setUglyThings(prevThings => [...prevThings, data]))
