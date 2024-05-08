@@ -11,6 +11,7 @@ import MensClothing from './pages/MensClothing'
 import KidsProducts from './pages/KidsProducts'
 import ContactInfo from './pages/ContactInfo'
 import About from './pages/About'
+import Careers from './pages/Careers'
 import './App.css'
 
 export default function App() {
@@ -28,7 +29,8 @@ export default function App() {
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/kids-products" element={<KidsProducts />} />
             <Route path="/contact-info" element={<ContactInfo />} />
-            <Route path="/about-info" element={<About />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/careers" element={<Careers />} />
           </Routes>
         <Footer />
       </div>
