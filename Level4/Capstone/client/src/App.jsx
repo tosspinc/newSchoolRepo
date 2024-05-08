@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Routes, Route  } from 'react-router-dom'
-// import { Context} from '../src/context/Context'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Login from './pages/Login'
 import Home from './pages/Home'
 import NavbarBottom from './components/NavbarBottom'
 import ApplianceProducts from './pages/ApplianceProducts'
@@ -15,7 +15,6 @@ import Careers from './pages/Careers'
 import './App.css'
 
 export default function App() {
-  const [] = useState(0)
 
   return (
     <>
@@ -31,6 +30,7 @@ export default function App() {
             <Route path="/contact-info" element={<ContactInfo />} />
             <Route path="/about" element={<About />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         <Footer />
       </div>

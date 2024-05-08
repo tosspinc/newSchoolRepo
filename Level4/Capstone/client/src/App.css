@@ -182,7 +182,7 @@ h5 {
   background-color: rgb(48, 213, 200);
   float: left;
 }
-
+/*login items*/
 .login-logo {
   margin-top: 1px;
   margin-right: 1px;
@@ -193,6 +193,11 @@ h5 {
   background-color: rgb(48, 213, 200);
 }
 
+a.item.login {
+  background-color: rgb(48, 213, 200);
+}
+
+/*cart items*/
 .cart-logo {
   margin: 0;
   margin-right: 8px;
@@ -359,7 +364,8 @@ border: 1px solid black;
 }
 
 .footer-center-column {
-
+  margin: 0;
+  padding: 0;
 }
 
 .footer-right-column {
