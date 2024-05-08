@@ -17,6 +17,8 @@
 
 .navleft-company-logo {
   background-color: rgb(48, 213, 200);
+  margin-left: 10px;
+  margin-top: 3px;
 }
 
 .navleft-company-logo a img {
@@ -67,6 +69,7 @@ nav button.search {
   height: 40px;
   width: 50px;
   margin-right: 10px;
+
 }
 
 .navright-login, .navright-shopping-cart {
@@ -162,7 +165,7 @@ h5 {
   margin-top: 2px;
   margin-right: 2px;
   margin-bottom: 2px;
-  margin-left: 0;
+  margin-left: 5px;
   height: 45px;
   width: 50px;
   padding: 5px;
@@ -173,7 +176,7 @@ h5 {
   margin-top: 2px;
   margin-right: 1px;
   margin-bottom: 2px;
-  margin-left: 0;
+  margin-left: 5px;
   height: 50px;
   padding: 4px;
   background-color: rgb(48, 213, 200);
@@ -192,7 +195,7 @@ h5 {
 
 .cart-logo {
   margin 0;
-  margin-right: -2px;
+  margin-right: 8px;
   height: 55px;
   width: 60px;
   margin-left: auto; /*pushes logo img to the right*/
@@ -214,9 +217,10 @@ h5 {
 .carousel-container {
   margin: 15px auto;
   padding: 0;
-  height: 400px;
+  height: 350px;
   width: 1400px;
-  border: 2px solid black;
+  border: 1px solid black;
+  border-radius: 12px;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -242,22 +246,123 @@ border: 1px solid black;
 
 }
 
+/*Contact page*/
+.contact_form_container {
+  margin: 150px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 15px;
+  height: 400px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact_button {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  height: 25px;
+  width: 60px;
+  border: 1px solid black;
+  background-color: rgb(48, 213, 200)
+  
+}
+
+.form-label {
+  display: flex;
+  align-items: baseline;
+}
+
+.first-name-input-box {
+  width: 300px;
+  height: 25px;
+}
+
+.last-name-input-box {
+  width: 300px;
+  height: 25px;
+}
+
+.email-input-box {
+  width: 300px;
+  height: 25px;
+}
+
+.form-message-text-box {
+  width: 500px;
+  height: 200px;
+}
+
 /*Footer*/
 .mainfooter {                             /*styling for footer on DOM*/
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   background-color: rgb(48, 213, 200);
-  margin-bottom: 0;                   /*places the footer at the bottom of the DOM.*/
-  padding: 5px;
-  height: 30px;
+  padding: 10px;
   text-align: center;
+}
+
+.footer-top-row {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(48, 213, 200);
+  align-items: center;
+}
+
+.footer-bottom-row {
+  display: flex;
+  background-color: rgb(48, 213, 200);
+  justify-content: space-between;
+}
+
+.footer-left-column {
+  background-color: rgb(48, 213, 200);
+}
+
+.footer-center-column {
+
+}
+
+.footer-right-column {
+  height: 45px;
+  width: 100px;
+  background-color: rgb(48, 213, 200);
+}
+
+.about-info, .contact-info {
+  height: 15px;
+  width: 40px;
+  background-color: rgb(48, 213, 200);
+  color: black;
+}
+
+.column {
+  flex: 1;
 }
 
 .mainfooter small {
   background-color: rgb(48, 213, 200);
+  
 }
 
+/*footer social media stuff*/
+.social-media-links{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: .5rem 0 1.5rem 0;
+  background-color: rgb(48, 213, 200);
+  width: 200px;
+  
+}
+
+.facebook, .twitter, .tiktok, .instagram {
+  background-color: rgb(48, 213, 200);
+  height: 40px;
+  width: 40px;
+}
