@@ -3,12 +3,23 @@
     z-index: 1000;
     margin: 0;
     padding: 0;
-    height: 100px;
+    height: 108px;
     width: 100%;
     background-color: #594D5B;
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: space-between;
+}
+
+.navbar-center {
+  color: bisque;
+  align-content: center;
+}
+
+.navbar-center h1 {
+  font-size: 36px;
+  font-weight: bolder;
+  font-style: oblique;
 }
 
 .matts-pic {
@@ -17,6 +28,13 @@
     padding: 3px;
     margin: 10px;
     background-color: #594D5B;
+}
+
+.login-logo {
+  height: 80px;
+  width: 80px;
+  padding: 3px;
+  margin: 10px;
 }
 
 /*home page items*/
@@ -29,13 +47,39 @@
     background-color: bisque;
   }
 
-/*Contact page items*/
-.contact-page-container h1 {
-    margin-top: 15px;
-    text-align: center;
-    
+  /* login page items*/
+  .login-container {
+    margin: 250px auto;
+    padding: 50px;
+    background-color: bisque;
+    height: 80px;
+    width: 250px;
+    border: 1.5px solid #594D5B;
+    border-radius: 10px;
+    align-items: center;
   }
-  
+
+  .login-button {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: rgb(48, 213, 200);
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 50px;
+    height: 30px;
+  }
+
+  .create-button {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: rgb(48, 213, 200);
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+  }
+
+  /*Contact page items*/
   .contact_form_container {
     margin: 100px;
     padding: 20px;
@@ -46,8 +90,15 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    background-color: bisque;
   }
-  
+
+  .contact-page-container h1 {
+    margin-top: 15px;
+    text-align: center;
+
+  }
+
   .contact_button {
     margin-top: 8px;
     margin-bottom: 10px;
@@ -57,6 +108,7 @@
     background-color: rgb(48, 213, 200)
     
   }
+  
 
 /*footer page items*/
 .footer-container {
@@ -64,8 +116,8 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: teal;
+    background-color: rgb(48, 213, 200);
     padding: 10px;
     text-align: center;
-    color: antiquewhite;
+    color: #594D5B;
 }
