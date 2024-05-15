@@ -12,7 +12,7 @@ export default function NavBar() {
                 </div>
             </div>
             <div className="navbar-center">
-                <h1>Arnold Jones FSJS Portfolio</h1>
+                <h1>FSJS Portfolio</h1>
             </div>
             <div className="navbar-right">
             <Link to='/login' className="item login">

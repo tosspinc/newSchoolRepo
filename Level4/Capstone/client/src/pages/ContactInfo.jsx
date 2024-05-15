@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com"
 
 export default function ContactInfo() {
     const [formData, setFormData] = useState({
@@ -19,20 +20,32 @@ export default function ContactInfo() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log(formData); // For testing purposes, log form data
-    };
+        // Send email using EmailJS
+        emailjs.sendForm(
+            "service_zbf1zst", // Your EmailJS service ID
+            "template_01y6xj5", // Your EmailJS template ID
+            e.target, // The form element
+            "YQnsTa0IcDLULF8G7" // Your EmailJS user ID
+        )
+        .then((result) => {
+            console.log(result.text);
+            // Optionally, you can show a success message to the user
+            alert("Your message has been sent successfully!");
+        })
+        .catch((error) => {
+            console.error(error.text);
+            // Optionally, you can show an error message to the user
+            alert("An error occurred while sending your message. Please try again later.");
+        });
 
-    // const redirect = () => {
-    //   const email = "tosspinc@gmail.com";
-    //   //const mailtoLink = "mailto:" + email;
-    //   const mailtoLink = "tosspinc@gmail.com"
-    //   const newWindow = window.open(mailtoLink, "emailWindow");
-    //   console.log(newWindow)
-    //   if (newWindow && newWindow.opener) {
-    //       newWindow.opener = null;
-    //   }
-    // };
+        // Clear form data after submission
+        setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            message: ""
+        });
+    };
 
     return (
         <div className="contact-page-container"> 
@@ -41,7 +54,8 @@ export default function ContactInfo() {
                 
                 <label className="form-label">
                     First Name:
-                    <input className="first-name-input-box" 
+                    <input 
+                        className="first-name-input-box" 
                         type="text"
                         name="firstName"
                         value={formData.firstName}
@@ -51,7 +65,8 @@ export default function ContactInfo() {
                 <br />
                 <label className="form-label">
                     Last Name: 
-                    <input className="last-name-input-box"
+                    <input 
+                        className="last-name-input-box"
                         type="text"
                         name="lastName"
                         value={formData.lastName}
@@ -61,7 +76,8 @@ export default function ContactInfo() {
                 <br />
                 <label className="form-label">
                     Email:
-                    <input className="email-input-box"
+                    <input 
+                        className="email-input-box"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -71,7 +87,8 @@ export default function ContactInfo() {
                 <br />
                 <label className="form-label">
                     Message:
-                    <textarea className="form-message-text-box"
+                    <textarea 
+                        className="form-message-text-box"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
