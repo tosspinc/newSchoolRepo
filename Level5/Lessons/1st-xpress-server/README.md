@@ -30,3 +30,9 @@
         *  Intermediary.
     #   Request Method.
         * CRUD - Get, Post, Put, Delete
+
+# Middleware
+    *   A function that fires on the in-between.
+
+#  Request Body (req.body)
+    *   
