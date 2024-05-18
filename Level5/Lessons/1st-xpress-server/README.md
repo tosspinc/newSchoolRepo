@@ -35,4 +35,6 @@
     *   A function that fires on the in-between.
 
 #  Request Body (req.body)
-    *   
+    
+# UUID 
+    *   creates a unique id for each database item.
