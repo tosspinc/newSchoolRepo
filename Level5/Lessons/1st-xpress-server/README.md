@@ -38,3 +38,17 @@
     
 # UUID 
     *   creates a unique id for each database item.
+
+# URL Parameters
+    # Parts of a url
+        *   Base - https://amazon.com
+        *   Endpoint - https://amazon.com/images
+        *   Parameter - https://amazon.com/imgages/8573945333
+
+    # Parameters (req.params) - GET one
+
+# URL Queries
+    # Query String - (typically used to filter results)
+        *   Begins with a "?".
+        *   Built of key=value pairs.
+        *   Multiple Queries seperated by the "&".
