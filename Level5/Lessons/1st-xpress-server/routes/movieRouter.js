@@ -30,6 +30,14 @@ movieRouter.get("/search/genre", (req, res) => {
     res.send(filteredMovies)    
 })
 
+//delete one
+movieRouter.delete("/:movieId", (req, res) => {
+    const movieId = req.params.movieId
+    const movieIndex = movies.findIndex(movie => movie._id === movieId)
+    movies.splice(movieIndex, 1)
+    res.send("SUccessfully deleted movie!")
+})
+
 // //routes //
 // movieRouter.get("/", (req, res) => {
 //     res.send(movies)
