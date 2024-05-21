@@ -38,6 +38,17 @@ movieRouter.delete("/:movieId", (req, res) => {
     res.send("SUccessfully deleted movie!")
 })
 
+//update an item 
+movieRouter.put("/:movieId", (req, res) => {
+    const movieId = req.params.movieId
+    const updateObject = req.body
+    const movieIndex = movies.findIndex(movie => movie._id === movieId)
+    const updatedMovie = Object.assign(movies[movieIndex], updateObject)
+    res.send(updatedMovie)
+})
+
+
+
 // //routes //
 // movieRouter.get("/", (req, res) => {
 //     res.send(movies)
