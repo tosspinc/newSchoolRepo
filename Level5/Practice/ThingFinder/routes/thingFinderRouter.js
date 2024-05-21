@@ -27,9 +27,11 @@ const thingFinder = [
 //routes
 thingFinderRouter.get("/fruit", (req, res) => {
     const type = req.query.type
-    const foundThing = thingFinder.filter(thing => thing.type === type)
+    const foundThing = thingFinder.filter(thing => thing.type.toLowerCase() === type)
     if (foundThing.length > 0) {
         res.send(foundThing)
+    } else {
+        res.status(404).send(`No Items of type ${type} found.`)
     }
 })
 
