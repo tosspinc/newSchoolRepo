@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import BountyForm from './components/bountyForm'; 
 
+
 export default function App() {
   const [bountyHunter, setBountyHunter] = useState([]);
 
@@ -14,14 +15,14 @@ export default function App() {
 
   function addBounty(newBounty) {
     axios.post("/api/bounties", newBounty)
-      .then(res => {
+        .then(res => {
         setBountyHunter(prevBounties => [...prevBounties, res.data]);
         console.log(bountyHunter)
       })
       .catch(err => console.log(err));
   }
 
-  function deleteBounty(bountiesId) {
+    function deleteBounty(bountiesId) {
     axios.delete(`/api/bounties/${bountiesId}`)
       .then(() => {
         setBountyHunter(prevBounties => prevBounties.filter(bounty => bounty._id !== bountiesId))
