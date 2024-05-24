@@ -1,5 +1,8 @@
-const express = require("express");
-const { v4: uuidv4 } = require("uuid");
+//  express = require("express");
+import express from "express";
+// const { v4: uuidv4 } = require("uuid");
+import { v4 as uuidv4 } from "uuid";
+
 const bountyHunterRouter = express.Router();
 
 const bounties = [
@@ -84,4 +87,5 @@ bountyHunterRouter.put("/:bountiesId", (req, res) => {
     res.send(updatedBounty);
 });
 
-module.exports = bountyHunterRouter;
+// module.exports = bountyHunterRouter;
+export default bountyHunterRouter;
