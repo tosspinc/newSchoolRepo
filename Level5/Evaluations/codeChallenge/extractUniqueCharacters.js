@@ -14,10 +14,24 @@ function extractUniqueCharacters(strings) {
             uniqueCharsSet.add(char)
         }
     }
-    //convert set to an array and returning it.
+    //converts uniqueCharsSet to an array and returns it.
     return Array.from(uniqueCharsSet)
 }
 
 console.log(uniqueChars)
 
 //output should be: ['a', 'p', 'l', 'e', 'b', 'n', 'c', 'h', 'r', 'y']
+
+//another way is as follows and puts letter in alphabetical order:
+//declares fruits as an array.
+const fruits = ["apple", "banana", "cherry"]
+//joins all three fruit names into one string.
+let combineWords = fruits.join("")
+//splits apart the combineWords string
+let fruitsArray = combineWords.split("")
+//removes duplicate letters.
+let indFruitsLetters = [...new Set(fruitsArray)]
+//sorts the indFruitsLetters string alphabetically
+indFruitsLetters.sort()
+//displays to console
+console.log(indFruitsLetters)
