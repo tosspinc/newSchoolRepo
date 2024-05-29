@@ -13,3 +13,6 @@ function sortByProperty(objects, PropertyName) {
 const sortByAge = sortByProperty(people, "age")
 
 console.log(sortByAge)
+
+
+
