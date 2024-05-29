@@ -22,7 +22,8 @@ individuals.sort((a, b) => {
     if (dateA < dateB) return -1
     if (dateA > dateB) return 1
 
-    return a.name.localCompare(b.name)
+    return a.name.localeCompare(b.name)
 })
 
 console.log(individuals)
+
