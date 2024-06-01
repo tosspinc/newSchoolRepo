@@ -7,7 +7,7 @@ const people = [
 ]
 
 function sortByProperty(objects, PropertyName) {
-    return objects.slice().sort((a, b) => a[PropertyName] - b[PropertyName])
+    return objects.slice().sort((a, b) => b[PropertyName] - a[PropertyName])
 }
 
 const sortByAge = sortByProperty(people, "age")
