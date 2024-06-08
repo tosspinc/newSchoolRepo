@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdMovieForm from "./AdMovieForm.jsx";
+import MovieForm from "./MovieForm.jsx";
 
 export default function Movie(props) {
     const {title, genre, _id, deleteMovie, editMovie} = props
@@ -25,7 +25,7 @@ export default function Movie(props) {
                 </>
             :
                 <>
-                    <AdMovieForm 
+                    <MovieForm 
                         title={title}
                         genre={genre}
                         _id={_id}
