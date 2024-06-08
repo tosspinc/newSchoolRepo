@@ -2,6 +2,7 @@ const express = require('express')
 const movieRouter = express.Router()
 //const { findById, findByIdAndDelete } = require('../models/todo')
 const Movie = require('../models/movie')
+const movie = require('../models/movie')
 
 //get all
 movieRouter.get("/", async (req, res, next) => {
@@ -13,6 +14,22 @@ movieRouter.get("/", async (req, res, next) => {
         return next(error)
     }
 })
+
+//get by genre
+movieRouter.get('/search/genre', async (req, res, next) => {
+    const genreQuery = req.query.genre
+    if (!genreQuery) {
+        return res.status(400).send({message: "Genre query parameter is required"})
+    }
+    try {   
+        const moviesByGenre = await movie.find({ genre: genreQuery})
+        return res.status(200).send(moviesByGenre)
+    } catch (error) {
+        res.status(500)
+        return next(error)
+    }
+})
+
 
 //post to mongoose
 movieRouter.post('/', async (req, res, next) => {
@@ -51,5 +68,7 @@ movieRouter.delete("/:id", async (req, res, next) => {
         return next(error)
     }
 })
+
+
 
 module.exports = movieRouter

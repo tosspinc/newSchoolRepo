@@ -5,10 +5,11 @@ const Schema = mongoose.Schema
 const movieSchema = new Schema({
     title: {
         type: String,
-        required: true,
+        required: true
     },
     genre: {
         type: String,
+        enum: ['action', 'fantasy', "horror"],
         required: true
     },
     releaseYear: Number

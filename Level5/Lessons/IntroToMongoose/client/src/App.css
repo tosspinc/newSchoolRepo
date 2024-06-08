@@ -76,3 +76,12 @@ p {
     padding: 10px;
     margin: 5px;
 }
+
+h4 {
+    margin-top: 12px;
+}
+
+.filter-form{
+    margin-top: 5px;
+    width: 200px;
+}
