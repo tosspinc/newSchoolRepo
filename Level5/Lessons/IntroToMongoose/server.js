@@ -1,40 +1,51 @@
+const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
-const { MongoClient } = require('mongodb');
-//const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+
+dotenv.config();
+
 const app = express();
 const port = 9000;
-const mongoUrl = 'mongodb+srv://tosspi:rqsaxOgv8352izWo@cluster0.2awqu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
+
+
+// Check if MONGO_URI is loaded correctly
+if (!process.env.MONGO_URI) {
+    console.error("Error: MONGO_URI is not defined in .env file.")
+    process.exit(1)
+}
 
 // Middleware
 app.use(express.json());
 app.use(morgan('dev'));
-app.use("/movies", require("./movieRouter.js")) 
 
 // MongoDB connection
-let db;
+const connectToDb = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log("Connected to the MongoDB");
+    } catch (error) {
+        console.error("Error connecting to the MongoDB: ", error);
+        console.error("Error stack: ", error.stack)
+        process.exit(1)
+    }
+};
 
-MongoClient.connect(mongoUrl, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true,
-  })
-  .then(client => {
-    console.log('Connected to MongoDB');
-    db = client.db('tosspi');
-  })
-  .catch(err => {
-    console.error('Failed to connect to MongoDB', err);
-  });
+// Calling connection to database function
+connectToDb();
+
+// Routes
+app.use("/todo", require("./routes/todoRouter"));
+app.use("/movie", require("./routes/movieRouter"));
 
 // Error handling
 app.use((err, req, res, next) => {
-  console.log(err.stack);
-  res.status(500).send('Something broke!');
+    console.log(err);
+    return res.send({ errMsg: err.message });
 });
 
 // Server listen
 app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+    console.log(`Server is running on port: ${port}`);
 });
-
-module.exports = { app, db }; // Export app and db for testing or further use
