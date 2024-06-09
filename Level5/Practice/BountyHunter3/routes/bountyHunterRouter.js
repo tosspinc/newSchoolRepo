@@ -1,91 +1,70 @@
-//  express = require("express");
-import express from "express";
-// const { v4: uuidv4 } = require("uuid");
-import { v4 as uuidv4 } from "uuid";
+import express from 'express'
+import bounty from '../models/bounty.js'
 
-const bountyHunterRouter = express.Router();
+const bountyHunterRouter = express.Router()
 
-const bounties = [
-    {
-        fName: "John",
-        lName: "Smith",
-        living: true,
-        bountyAmt: 10000,
-        type: "sith",
-        _id: uuidv4()
-    },
-    {
-        fName: "Jane",
-        lName: "Doe",
-        living: true,
-        bountyAmt: 1000,
-        type: "jedi",
-        _id: uuidv4()
-    },
-    {
-        fName: "Luke",
-        lName: "Skywalker",
-        living: true,
-        bountyAmt: 100000,
-        type: "jedi",
-        _id: uuidv4()
-    },
-    {
-        fName: "Sandra",
-        lName: "Bullock",
-        living: true,
-        bountyAmt: 250000,
-        type: "sith",
-        _id: uuidv4()
+//post a bounty
+bountyHunterRouter.post('/', async (req, res, next) => {
+    try {
+        const newBounty = new bounty(req.body)
+        const savedBounty = await newBounty.save()
+        return res.status(201).send(savedBounty)
+    } catch (error) {
+        res.status(500)
+        return next(error)
     }
-];
+})
 
-// Get all and create new
-bountyHunterRouter.route("/")
-    .get((req, res) => {
-        console.log(req.body);
-        res.send(bounties);
-    })
-    .post((req, res) => {
-        const newBounty = req.body;
-        newBounty._id = uuidv4();
-        console.log(newBounty);
-        bounties.push(newBounty);
-        res.send(newBounty);
-    });
-
-// Delete a data listing
-bountyHunterRouter.delete("/:bountiesId", (req, res) => {
-    const bountyId = req.params.bountiesId;
-    console.log("Bounty Id to delete:", bountyId);  // Logging the ID to delete
-
-    const bountyIndex = bounties.findIndex(bounty => bounty._id === bountyId);
-
-    if (bountyIndex >= 0) {
-        console.log("Bounty found at index:", bountyIndex);  // Logging index of found bounty
-        bounties.splice(bountyIndex, 1);
-        res.send("Successfully deleted a bounty!");
-    } else {
-        console.log("Bounty not found for ID:", bountyId);  // Logging not found scenario
-        res.status(404).send("Bounty not found!");
+// Get all 
+bountyHunterRouter.get("/", async (req, res, next) => {
+    try {
+        const allBounties = await bounty.find()
+        return res.status(200).send(allBounties)
+    } catch (error) {
+        res.status(500)
+        return next(error)
     }
 });
 
-// Update one listing 
-bountyHunterRouter.put("/:bountiesId", (req, res) => {
-    const bountiesId = req.params.bountiesId;
-    const updateBounty = req.body;
-    const bountyIndex = bounties.findIndex(bounty => bounty._id === bountiesId);
-
-    if (bountyIndex === -1) {
-        return res.status(404).send("Bounty not found!");
+//get a bounty by type
+bountyHunterRouter.get('/search/type', async (req, res, next) => {
+    const typeQuery = req.query.type
+    if (!typeQuery) {
+        return res.status(400).send({message: "Type query parameter is required"})
+    } 
+    try {
+        const bountyByType = await bounty.find({ type: typeQuery })
+        return res.status(200).send(bountyByType)
+    } catch (error) {
+        res.status(500)
+        return next(error)
     }
+})
 
-    const updatedBounty = { ...bounties[bountyIndex], ...updateBounty };
-    bounties[bountyIndex] = updatedBounty;
+//edit a bounty
+bountyHunterRouter.put('/:id', async (req, res, next) => {
+    try {
+        const updateBounty = await bounty.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true}
+        )
+        return res.status(200).send(updateBounty)
+    } catch (error) {
+        res.status(500)
+        return next(error)
+    }
+})
 
-    res.send(updatedBounty);
-});
+//delete a bounty
+bountyHunterRouter.delete('/:id', async (req, res, next) => {
+    try {
+        const deleteBounty = await bounty.findByIdAndDelete(req.params.id)
+        return res.status(200).send(`You have deleted the ${deleteBounty.fName} bounty.`)
+    } catch (error) {
+        res.status(500)
+        return next(error)
+    }
+})
 
-// module.exports = bountyHunterRouter;
-export default bountyHunterRouter;
+export default bountyHunterRouter
