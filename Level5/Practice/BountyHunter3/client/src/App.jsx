@@ -8,13 +8,13 @@ export default function App() {
   const [bountyHunter, setBountyHunter] = useState([]);
 
   function getBountyHunter() {
-    axios.get("/api/bounties")
+    axios.get("/api/bounty")
       .then(res => setBountyHunter(res.data))
       .catch(err => console.log(err));
   }
 
   function addBounty(newBounty) {
-    axios.post("/api/bounties", newBounty)
+    axios.post("/api/bounty", newBounty)
         .then(res => {
         setBountyHunter(prevBounties => [...prevBounties, res.data]);
         console.log(bountyHunter)
@@ -23,7 +23,7 @@ export default function App() {
   }
 
     function deleteBounty(bountiesId) {
-    axios.delete(`/api/bounties/${bountiesId}`)
+    axios.delete(`/api/bounty/${bountiesId}`)
       .then(() => {
         setBountyHunter(prevBounties => prevBounties.filter(bounty => bounty._id !== bountiesId))
       })

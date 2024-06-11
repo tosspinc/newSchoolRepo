@@ -36,7 +36,7 @@ const connectToDb = async () => {
 connectToDb()
 
 // Route handling
-app.use("/bounty", bountyHunterRouter)
+app.use("/api/bounty", bountyHunterRouter)
 
 // Basic error handler
 app.use((err, req, res, next) => {
