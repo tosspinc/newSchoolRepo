@@ -2,12 +2,15 @@ const mongoose = require("mongoose")
 const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv")
+const cors = require("cors")
 
 
 dotenv.config();
 
 const app = express();
 const port = 9000;
+
+app.use(cors())
 
 // Check if MONGO_URI is loaded correctly
 if (!process.env.MONGO_URI) {

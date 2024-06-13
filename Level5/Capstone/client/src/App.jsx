@@ -12,6 +12,7 @@ import KidsProducts from './pages/KidsProducts'
 import PetProducts from './pages/PetProducts'
 import ContactInfo from './pages/ContactInfo'
 import About from './pages/About'
+import Books from './pages/Books'
 import Careers from './pages/Careers'
 import './App.css'
 
@@ -25,6 +26,7 @@ export default function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path="/appliance-products" element={<ApplianceProducts />} />
+            <Route path="/books" element={<Books />} />
             <Route path="/womans-clothing" element={<WomansClothing />} />
             <Route path="/mens-clothing" element={<MensClothing />} />
             <Route path="/kids-products" element={<KidsProducts />} />
