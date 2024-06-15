@@ -17,7 +17,7 @@ export default function BookDetail() {
     return (
         <div className="book-detail">
             <img src={book.imageUrl} alt={book.title} />
-            <h1>book.title</h1>
+            <h1>{book.title}</h1>
             <p>{book.description}</p>
             <p>genre: {book.genre}</p>
             <p>Year Published: {book.yearPublished}</p>

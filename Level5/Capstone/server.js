@@ -41,6 +41,7 @@ connectToDb();
 app.use("/books", require("./routes/bookRouter.js"));
 app.use("/authors", require("./routes/authorRouter.js"));
 app.use("/petProducts", require("./routes/petProductsRouter.js"));
+app.use("/applianceParts", require("./routes/appliancePartsRouter.js"))
 
 
 // Error handling
