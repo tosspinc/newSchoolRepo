@@ -1,22 +1,22 @@
 * {
+  margin: 15px;
   background-color: #594D5B;
 }
 
 .portfolio-container {
-  margin-top: 10px;
-  margin-left: 0;
-  padding: 10px;
+  margin: 0;
+  padding: 5px;
   height: auto;
-  width: 1670px;
+  width: auto;
   background-color: burlywood;
 }
 
 .portfolio-header {
   display: flex;
-  margin-top: 5px 0;
+  margin-top: 10px;
   padding: 10px;
   height: auto;
-  width: 1650px;
+  width: auto;
   background-color: antiquewhite;
   justify-content: space-between;
 }
@@ -47,10 +47,10 @@
 }
 
 .portfolio-body {
-  margin: 20px 0;
+  margin: 20px;
   background-color: antiquewhite;
-  width: 1670px;
-  height: 200px;
+  width: auto;
+  height: auto;
 }
 
 .portfolio-body h1 {
