@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 //appliance parts schema or blueprint
-const appliancePartsSchema = new Schema({
+const applianceSchema = new Schema({
     title: {
         type: String,
         required: [true, 'Title is required.'],
         trim: true
     },
-    partnumber: {
+    number: {
         type: String,
-        required: [true, 'Part number is required'],
+        required: [true, 'Item number is required'],
         trim: true
     },
     manufacturer: {
@@ -25,12 +25,12 @@ const appliancePartsSchema = new Schema({
     },
     description: {
         type: String,
-        required: [true, 'A brief description of the appliance part is required.'],
+        required: [true, 'A brief description of the appliance item is required.'],
         trim: true
     },
     imageUrl: {
         type: String,
-        required: [false, "an image of appliance part is required"],
+        required: [false, "an image of the appliance item is required"],
         trim: false
     },
     price: {
@@ -40,4 +40,4 @@ const appliancePartsSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model("ApplianceParts", appliancePartsSchema)
+module.exports = mongoose.model("Appliance", applianceSchema)

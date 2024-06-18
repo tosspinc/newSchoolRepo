@@ -38,10 +38,10 @@ const connectToDb = async () => {
 connectToDb();
 
 //routes
-app.use("/books", require("./routes/bookRouter.js"));
-app.use("/authors", require("./routes/authorRouter.js"));
-app.use("/petProducts", require("./routes/petProductsRouter.js"));
-app.use("/applianceParts", require("./routes/appliancePartsRouter.js"))
+app.use("/api/books", require("./routes/bookRouter.js"));
+app.use("/api/authors", require("./routes/authorRouter.js"));
+app.use("/api/pets", require("./routes/petProductsRouter.js"));
+app.use("/api/appliance", require("./routes/applianceRouter.js"))
 
 
 // Error handling

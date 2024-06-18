@@ -1,3 +1,5 @@
+import "../cssFiles/shoppingcart.css"
+
 //checks to see if page has finished loading.
 if (document.readyState == "loading") {
     document.addEventListener("DOMContentLoaded", ready)

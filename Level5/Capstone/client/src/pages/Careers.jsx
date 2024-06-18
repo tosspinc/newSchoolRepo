@@ -1,4 +1,5 @@
 import React from "react";
+import "../cssFiles/careers.css"
 
 export default function Careers() {
     return (

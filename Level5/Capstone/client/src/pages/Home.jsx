@@ -5,7 +5,7 @@
         return (
             <>
                 <div className="home-container">
-                    <Carousel />
+                    
                 </div>
             </>
         )

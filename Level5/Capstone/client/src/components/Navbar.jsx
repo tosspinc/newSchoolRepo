@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
- 
+import "../cssFiles/navbar.css" 
+
 export default function Navbar() {
     return (
         <nav className="navbar-top">
@@ -21,7 +22,9 @@ export default function Navbar() {
                     <img src="./src/assets/Imgs/Login.jpg" className="login-logo" />
                 </Link>
                 <div className="navright-shopping-cart">
-                    <img src="./src/assets/Imgs/shopping-cart.jpg" className="cart-logo" />
+                    <Link to='/shoppingcart' className="item shoppingcart">
+                        <img src="./src/assets/Imgs/shopping-cart.jpg" className="cart-logo" />
+                    </Link>
                 </div>
             </div>
         </nav>

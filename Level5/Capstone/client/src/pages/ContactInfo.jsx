@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../cssFiles/contactinfo.css"
 import emailjs from "emailjs-com"
 
 export default function ContactInfo() {
@@ -8,10 +9,6 @@ export default function ContactInfo() {
         email: "",
         message: ""
     });
-
-    // useEffect(() => {
-    //     redirect(); // Call the redirect function when the component mounts
-    // }, []); // Empty dependency array ensures this effect runs only once after initial render
 
     const handleChange = (e) => {
         const { name, value } = e.target;

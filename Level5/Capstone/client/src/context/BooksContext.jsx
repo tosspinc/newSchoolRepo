@@ -6,7 +6,7 @@ export const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:9000/books')
+    fetch('/api/books')
       .then(response => response.json())
       .then(data => setBooks(data))
       .catch(error => console.error("Error fetching books: ", error))
