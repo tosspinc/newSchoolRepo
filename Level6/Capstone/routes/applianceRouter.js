@@ -11,7 +11,7 @@ applianceRouter.get("/", async (req, res, next) => {
         const allAppliance = await Appliance.find()
         return res.status(200).send(allAppliance)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -24,7 +24,7 @@ applianceRouter.post('/', async (req, res, next) => {
         const savedAppliance = await newAppliance.save()
         return res.status(201).send(savedAppliance)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -39,7 +39,7 @@ applianceRouter.put('/:id', async (req, res, next) => {
     )
     return res.status(200).send(updatedAppliance)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -48,9 +48,9 @@ applianceRouter.put('/:id', async (req, res, next) => {
 applianceRouter.delete("/:id", async (req, res, next) => {
     try {
         const deletedAppliance = await Appliance.findByIdAndDelete(req.params.id)
-        return res.status(200).send(`You have deleted ${deletedAppliance.title}`)
+        return res.status(200).send({ message: `Appliance part ${deletedAppliance.title} has been deleted successfully.`})
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -68,7 +68,7 @@ applianceRouter.put("/likes/:applianceID", async (req, res, next) => {
         }
         return res.status(200).send(updatedAppliance)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })

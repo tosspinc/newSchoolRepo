@@ -10,7 +10,7 @@ petProductRouter.get("/", async (req, res, next) => {
         const allPetProducts = await petProducts.find()
         return res.status(200).send(allPetProducts)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -25,7 +25,7 @@ petProductRouter.get('/:id', async (req, res, next) => {
         if (error.name === 'CastError') {
             return res.status(400).send({ message: 'No pet product with that ID found'})
         }
-         res.status(500)
+         res.status(500).send({ error: "Internal Server Error"})
          return next(error)
      }
 })
@@ -37,7 +37,7 @@ petProductRouter.post('/', async (req, res, next) => {
       const savedPetProduct = await newPetProduct.save()
       return res.status(201).send(savedPetProduct)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -52,7 +52,7 @@ petProductRouter.put('/:id', async (req, res, next) => {
     )
     return res.status(200).send(updatedPetProduct)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -61,9 +61,9 @@ petProductRouter.put('/:id', async (req, res, next) => {
 petProductRouter.delete("/:id", async (req, res, next) => {
     try {
         const deletedPetProduct = await petProducts.findByIdAndDelete(req.params.id)
-        return res.status(200).send(`You have deleted ${deletedPetProduct.id}`)
+        return res.status(200).send({ message: `The pet product ${deletedPetProduct.name} has been deleted.`})
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -81,7 +81,7 @@ petProductRouter.put("/likes/:petProductID", async (req, res, next) => {
         }
         return res.status(200).send(updatedPetProduct)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })

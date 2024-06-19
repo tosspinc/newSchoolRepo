@@ -9,6 +9,7 @@ dotenv.config();
 const secret = process.env.SECRET
 const app = express();
 const port = 9000;
+//const PORT = process.env.PORT
 
 app.use(cors())
 
@@ -46,6 +47,7 @@ app.use("/api/appliance", require("./routes/applianceRouter.js"))
 
 //login & create account route.
 app.use("/api/userName", require("./routes/userNameRouter.js"))
+
 
 // Error handling
 app.use((err, req, res, next) => {

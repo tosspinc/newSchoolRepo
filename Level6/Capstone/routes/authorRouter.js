@@ -10,7 +10,7 @@ authorRouter.get("/", async (req, res, next) => {
         const allAuthors = await Author.find()
         return res.status(200).send(allAuthors)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -29,7 +29,7 @@ authorRouter.get("/search", async (req, res, next) => {
         return res.status(200).send(authors)        
         }
     catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -43,7 +43,7 @@ authorRouter.get("/:authorID", async (req, res, next) => {
         } 
         return res.status(200).send(author)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -55,7 +55,7 @@ authorRouter.post("/", async (req, res, next) => {
         const savedAuthor = await newAuthor.save()
         return res.status(201).send(savedAuthor)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -70,7 +70,7 @@ authorRouter.put('/:id', async (req, res, next) => {
        )
        return res.status(200).send(updatedAuthor)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -81,7 +81,7 @@ authorRouter.delete("/:id", async (req, res, next) => {
         const deletedAuthor = await Author.findByIdAndDelete(req.params.id)
         return res.status(200).send(`You have deleted ${deletedAuthor.title}`)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })

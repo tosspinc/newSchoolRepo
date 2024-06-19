@@ -10,7 +10,7 @@
             const allBooks = await Book.find()
             return res.status(200).send(allBooks)
         } catch (error) {
-            res.status(500)
+            res.status(500).send({ error: "Internal Server Error"})
             return next(error)
         }
     })
@@ -25,7 +25,7 @@
             }  
             return res.status(200).send(books)  
         } catch(error) {
-            res.status(500)
+            res.status(500).send({ error: "Internal Server Error"})
             return next(error)
         }
     })
@@ -38,7 +38,7 @@
             const savedBook = await newBook.save()
             return res.status(201).send(savedBook)
         } catch (error) {
-            res.status(500)
+            res.status(500).send({ error: "Internal Server Error"})
             return next(error)
         }
     })
@@ -53,7 +53,7 @@
         )
         return res.status(200).send(updatedBook)
         } catch (error) {
-            res.status(500)
+            res.status(500).send({ error: "Internal Server Error"})
             return next(error)
         }
     })
@@ -62,9 +62,9 @@
     bookRouter.delete("/:id", async (req, res, next) => {
         try {
             const deletedBook = await Book.findByIdAndDelete(req.params.id)
-            return res.status(200).send(`You have deleted ${deletedBook.title}`)
+            return res.status(200).send({message: `the book called ${deletedBook.title} has been deleted.`})
         } catch (error) {
-            res.status(500)
+            res.status(500).send({ error: "Internal Server Error"})
             return next(error)
         }
     })
@@ -82,7 +82,7 @@
             }
             return res.status(200).send(updatedBook)
         } catch (error) {
-            res.status(500)
+            res.status(500).send({ error: "Internal Server Error"})
             return next(error)
         }
     })

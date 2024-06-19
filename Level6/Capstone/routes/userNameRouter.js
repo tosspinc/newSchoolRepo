@@ -2,6 +2,7 @@ express = require('express')
 const userNameRouter = express.Router()
 const UserName = require('../models/userName')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 //get all users
 userNameRouter.get("/", async (req, res, next) => {
@@ -9,7 +10,7 @@ userNameRouter.get("/", async (req, res, next) => {
         const allUserNames = await UserName.find()
         return res.status(200).send(allUserNames)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -20,20 +21,50 @@ userNameRouter.post('/signup', async (req, res, next) => {
         const {userName, password} = req.body
 
         //checks if username is already in use
-        const existingUser = await UserName.findOne({ userName })
+        const existingUser = await UserName.findOne({ userName: userName.toLowerCase() })
         if (existingUser) {
             return res.status(403).send({ error: "That username is already being used." })
         }
 
-        const newUserName = new UserName({ userName, password })
+        //hash password before saving
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        const newUserName = new UserName({ userName: userName.toLowerCase(), password: hashedPassword })
         const savedUserName = await newUserName.save()
 
         //generate jwt token
         const token = jwt.sign({ userName: savedUserName.userName }, process.env.SECRET)
 
-        return res.status(201).send({ user: savedUserName, token })
+        return res.status(201).send({ user: savedUserName.withoutPassword(), token })
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
+        return next(error)
+    }
+})
+
+//for when a user logs in
+userNameRouter.post('/login', async (req, res, next) => {
+    try {
+        const { userName, password} = req.body
+
+        //checks if they already exists in database.
+        const user = await UserName.findOne({ userName: userName.toLowerCase() })
+        if(!user) {
+            return res.status(403).send({ error: "No User with your username exists. Please signup." })
+        }
+
+        //checks if password matches.
+        const isMatch = bcrypt.compare(password, user.password)
+        if (!isMatch) {
+            return res.status(403).send({ error: "Incorrect username or password." })
+        }
+
+        //generate jwt token
+        const token = jwt.sign({ userName: user.userName }, process.env.SECRET)
+
+        return res.status(200).send({ message: "Logged in successfully.", user: user.withoutPassword(), token })
+    } catch (error) {
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -46,9 +77,9 @@ userNameRouter.put('/:id', async (req, res, next) => {
             req.body,
             {new: true} 
     )
-    return res.status(200).send(updatedUserName)
+    return res.status(200).send(updatedUserName.withoutPassword)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
@@ -57,9 +88,9 @@ userNameRouter.put('/:id', async (req, res, next) => {
 userNameRouter.delete("/:id", async (req, res, next) => {
     try {
         const deletedUserName = await UserName.findByIdAndDelete(req.params.id)
-        return res.status(200).send(`You have deleted ${deletedUserName.userName}`)
+        return res.status(200).send(`User ${deletedUserName.userName} deleted successfully.`)
     } catch (error) {
-        res.status(500)
+        res.status(500).send({ error: "Internal Server Error"})
         return next(error)
     }
 })
