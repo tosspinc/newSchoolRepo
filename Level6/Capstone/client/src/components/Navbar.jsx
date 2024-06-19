@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Popup from "../pages/Popup";
 import "../cssFiles/navbar.css" 
 
 export default function Navbar() {
+    const [popupVisible, setPopupVisible] = useState(false)
+
+    const togglePopup = () => {
+        setPopupVisible(!popupVisible)
+    }
+
     return (
         <nav className="navbar-top">
             <div className="navleft-company-logo">
@@ -13,20 +20,21 @@ export default function Navbar() {
             <div className="navcenter-search">
                 <div className="search-container">
                     <button type="submit" className="all"> All <i className="fa fa-sort-desc"></i></button>
-                        <input type="text" placeholder="Search Tosspi " />
+                    <input type="text" placeholder="Search Tosspi " />
                     <button type="submit" className="search"><i className="fa fa-search"></i></button>
                 </div>
             </div>
             <div className="navright-login">
-                <Link to='/login' className="item login">
+                <button className="item login" onClick={togglePopup}>
                     <img src="./src/assets/Imgs/Login.jpg" className="login-logo" />
-                </Link>
+                </button>
                 <div className="navright-shopping-cart">
                     <Link to='/shoppingcart' className="item shoppingcart">
                         <img src="./src/assets/Imgs/shopping-cart.jpg" className="cart-logo" />
                     </Link>
                 </div>
             </div>
+            {popupVisible && <Popup closePopup={togglePopup} />}
         </nav>
         
     )
