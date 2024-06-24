@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 //author schema or blueprint
 const userNameSchema = new Schema ({
-    userName: {
+    username: {
         type: String,
         require: true,
         lowercase: true,

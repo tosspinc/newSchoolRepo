@@ -1,10 +1,10 @@
 /*Carousel css */
 .carousel-container {
     margin: 15px auto;
+    margin-left: 35px;
     padding: 0;
     height: 500px;
-    width: 1410px;
-    border: 1px solid black;
+    width: 1475px;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
@@ -29,12 +29,14 @@
     padding: 6px;
     height: 50px;
     width: 30px;
+    background-color: rgb(48, 213, 200);
+    border-radius: 45%;
   }
 
   .left {
-    left: 135px;
+    left: 20px;
   }
 
   .right {
-    right: 115px;
+    right: 20px;
   }
