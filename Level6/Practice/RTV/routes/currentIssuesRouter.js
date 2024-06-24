@@ -2,12 +2,12 @@ const express = require('express');
 const currentIssuesRouter = express.Router();
 const Issues = require('../models/issue.js');
 const UserName = require('../models/user.js');
-const Comment = require('../models/comments.js')
+const Comment = require('../models/comment.js')
 
 //Get all issues
-currentIssuesRouter.get('/', (req, res, next) => {
+currentIssuesRouter.get('/', async (req, res, next) => {
     try {
-        const allIssues = Issues.find()
+        const allIssues = await Issues.find().populate('author').populate('comments').exec()
         return res.status(200).send(allIssues)
     } catch (error) {
         res.status(500).send({ error: "Internal Server Error"})
@@ -18,9 +18,9 @@ currentIssuesRouter.get('/', (req, res, next) => {
 //get one issue
 currentIssuesRouter.get('/:issueId', async (req, res, next) =>{
     try {
-        const issue = await issue.findById(req.params.issueId).populate('comments')
+        const issue = await Issues.findById(req.params.issueId).populate('author').populate('comments')
         if (!issue) {
-            return res.status(404).send({ message: 'No issue found.'})
+            return res.status(404).send({ message: 'No current issue found.'})
         } 
         return res.status(200).send(issue)
     } catch (error) {
@@ -30,13 +30,13 @@ currentIssuesRouter.get('/:issueId', async (req, res, next) =>{
 })
 
 //get one issue by specific user
-currentIssuesRouter.get('/comments/user/:userId', async (req, res, next) => {
+currentIssuesRouter.get('/user/:userId', async (req, res, next) => {
     try {
-        const userComments = await Comment.find( { author: req.params.userId }).populate('author')
-        if (!userComments.length) {
-            return res.status(404).send({ message: "No comments found for this user"})
+        const userIssues = await Issues.find( { author: req.params.userId }).populate('author').populate('comments')
+        if (!userIssues.length) {
+            return res.status(404).send({ message: "No issues found for this user"})
         }
-        return res.status(200).send(userComments)
+        return res.status(200).send(userIssues)
     } catch (error) {
         res.status(500).send({ error: 'Internal Server Error' })
         return next(error)
@@ -62,6 +62,44 @@ currentIssuesRouter.post('/', async (req, res, next) => {
 
     } catch (error) {
         res.status(500).send({ error: 'Internal Server Error' })
+        return next(error)
+    }
+})
+
+//update an issue
+currentIssuesRouter.put('/issueId', async (req, res, next) => {
+    try {
+        const { title, description, author } = req.body
+
+        //updates issue
+        const updatedIssue = await Issues.findByIdAndUpdate(
+            req.params.issueId,
+            { title, description, author },
+            {new : true}
+        ).populate('author').populate('comments')
+
+        if (!updatedIssue) {
+            return res.status(404).send({ message: 'Issue not found.'})
+        }
+
+        return res.status(200).send(updatedIssue)
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error' })
+        return next(error)
+    }
+})
+
+currentIssuesRouter.delete('/:issueId', async (req, res, next) => {
+    try {
+        const deletedIssue = await Issues.findByIdAndDelete(req.params.issueId)
+
+        if (!deletedIssue) {
+            return res.status(404).send({ message: 'No current issues found.'})
+        }
+
+        return res.status(200).send({ message: `Issue titled ${deletedIssue.title} has been deleted successfully.`})
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error'})
         return next(error)
     }
 })

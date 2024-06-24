@@ -2,53 +2,53 @@ const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const cors = require('cors')
+const cors = require('cors');
 
 dotenv.config();
 
-const secret = process.env.SECRET;
 const app = express();
 const port = 9000;
 
-app.use(cors())
+app.use(cors());
 
-// Check if MONGO_URI is loaded correctly
 if (!process.env.MONGO_URI) {
-    console.error("Error: MONGO_URI is not defined in .env file.")
-    process.exit(1)
+    console.error("Error: MONGO_URI is not defined in .env file.");
+    process.exit(1);
 }
 
-//middleware
+// Middleware
 app.use(express.json());
 app.use(morgan("dev"));
 
 // MongoDB connection
 const connectToDb = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         console.log("Connected to the MongoDB");
     } catch (error) {
         console.error("Error connecting to the MongoDB: ", error);
-        console.error("Error stack: ", error.stack)
-        process.exit(1)
+        process.exit(1);
     }
 };
 
-//calls connection to mongoDB
 connectToDb();
 
-//routes
-app.use('/api/User', require('./routes/authRouter.js'))
-app.use('/api/Issues', require('./routes/currentIssuesRouter.js'))
+// Routes
+//app.use('/api/User', require('./routes/authRouter.js'));
+app.use('/auth/User', require('./routes/authRouter.js'))
+app.use('/api/issues', require('./routes/currentIssuesRouter.js'));
+app.use('/api/comments', require('./routes/CommentsRouter.js'));
 
 // Error handling
-//this keeps the headers from being sent multiple times.
 app.use((err, req, res, next) => {
     console.log(err);
     if (!res.headersSent) {
         return res.status(500).send({ errMsg: err.message });
     }
-    next(err)
+    next(err);
 });
 
 // Server listen
