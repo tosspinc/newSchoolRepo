@@ -42,4 +42,44 @@ authRouter.post('/signup', async (req, res, next) => {
     }
 })
 
+authRouter.put('/:id', async (req, res, next) => {
+    try {
+        const updateData = req.body
+        
+        //if updating password
+        if (updateData.password) {
+            updateData.password = await bcrypt.hash(updateData.password, 10)
+        }
+
+        const updatedUserName = await UserName.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true}
+        )
+
+        if (!updatedUserName) {
+            return res.status(404).send({ error: "User not found" })
+        }
+
+        return res.status(200).send(updatedUserName)
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error'})
+        return next(error)
+    }
+})
+
+authRouter.delete('/:id', async (req, res, next) => {
+    try {
+        const deletedUserName = await UserName.findByIdAndDelete(req.params.id) 
+        
+        if (!deletedUserName) {
+            return res.status(404).send({ error: "User not found." })
+        }
+        return res.status(200).send(`User ${deletedUserName.username} deleted successfully.`)
+    } catch (error) {
+        res.status(500).send({ error: 'Internal Server Error' })
+        return next(error)
+    }
+})
+
 module.exports = authRouter
