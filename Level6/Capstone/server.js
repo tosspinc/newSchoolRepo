@@ -43,7 +43,7 @@ connectToDb();
 app.use("/api/books", require("./routes/bookRouter.js"));
 app.use("/api/authors", require("./routes/authorRouter.js"));
 app.use("/api/pets", require("./routes/petProductsRouter.js"));
-app.use("/api/appliance", require("./routes/applianceRouter.js"))
+app.use("/api/appliance", require("./routes/appliancePartRouter.js"))
 
 //login & create account route.
 app.use("/api/userName", require("./routes/userNameRouter.js"))

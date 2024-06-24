@@ -38,13 +38,17 @@ const connectToDb = async () => {
 connectToDb();
 
 //routes
-app.use('/auth', require('./routes/authRouter.js'))
-app.use('/signUp', require('./routes/authRouter.js'))
+app.use('/api/User', require('./routes/authRouter.js'))
+app.use('/api/Issues', require('./routes/currentIssuesRouter.js'))
 
 // Error handling
+//this keeps the headers from being sent multiple times.
 app.use((err, req, res, next) => {
     console.log(err);
-    return res.send({ errMsg: err.message });
+    if (!res.headersSent) {
+        return res.status(500).send({ errMsg: err.message });
+    }
+    next(err)
 });
 
 // Server listen

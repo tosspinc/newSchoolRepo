@@ -6,7 +6,7 @@ import "../cssFiles/navbarbottom.css"
 export default function NavbarBottom() {
     return (
         <div className="navbar-bottom-container">
-            <Link to='/appliance' className='item appliance'>Appliance</Link>
+            <Link to='/applianceParts' className='item appliance-parts'>Appliance Parts</Link>
             <Link to='/books' className='item books'>Books</Link>
             <Link to='/pets' className='item pets'>Pets</Link>
             <Link to='/womans-clothing' className='item womans-clothing'>Women's</Link>

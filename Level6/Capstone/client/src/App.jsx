@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import NavbarBottom from './components/NavbarBottom'
-import Appliance from './pages/Appliance'
+import ApplianceParts from './pages/ApplianceParts'
 import WomansClothing from './pages/WomansClothing'
 import MensClothing from './pages/MensClothing'
 import KidsProducts from './pages/KidsProducts'
@@ -30,7 +30,7 @@ export default function App() {
         <div className='main'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path="/appliance" element={<Appliance />} />
+            <Route path="/applianceParts" element={<ApplianceParts />} />
             <Route path="/books" element={<Books />} />
             <Route path="/pets" element={<Pets />} />
             <Route path="/womans-clothing" element={<WomansClothing />} />

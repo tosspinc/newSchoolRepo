@@ -1,6 +1,6 @@
-const mongoose = required('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const commentSchema = required('./comment');
+const commentSchema = require('./comments').Schema;
 
 const issueSchema = new Schema ({
     title: {
@@ -10,13 +10,19 @@ const issueSchema = new Schema ({
     },
     description: {
         type: String,
-        required: false,
+        required: true,
+        trim: true
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "UserName",
+        required: true,
         trim: true
     },
     votes: [{
         voter: {
             type: Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'UserName',
             required: true,
             trim: true
         },

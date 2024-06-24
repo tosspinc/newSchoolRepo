@@ -12,11 +12,7 @@ export default function Login({ onLogin }) {
         const username = e.target.username.value
         const password = e.target.password.value
 
-        try {
-            
-        } catch (error) {
-            
-        }
+        
     }
 
 

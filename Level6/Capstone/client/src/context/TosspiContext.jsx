@@ -3,17 +3,17 @@ import React, { createContext, useState, useEffect } from "react";
 const TosspiContext = createContext();
 
 export const TosspiWebsite = ({ children }) => {
-  const [Appliance, setAppliance] = useState([]);
+  const [applianceParts, setApplianceParts] = useState([]);
 
   useEffect(() => {
     fetch('/api/appliance')
       .then(response => response.json())
-      .then(data => setAppliance(data))
-      .catch(error => console.error("Error fetching appliance item: ", error));
+      .then(data => setApplianceParts(data))
+      .catch(error => console.error("Error fetching appliance part: ", error));
   }, []);
 
   return (
-    <TosspiContext.Provider value={{ Appliance, setAppliance }}>
+    <TosspiContext.Provider value={{ applianceParts, setApplianceParts }}>
       {children}
     </TosspiContext.Provider>
   );
