@@ -3,6 +3,16 @@ import '../cssFiles/popup.css';
 
 const Popup = ({ closePopup }) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value)
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value)
+    }
 
     return (
         <div className="popup">
@@ -14,9 +24,19 @@ const Popup = ({ closePopup }) => {
                             <h2>Login</h2>
                             <form>
                                 <label>Username:</label>
-                                <input type="text" name="username" required />
+                                <input 
+                                    type="text" 
+                                    value={username}
+                                    name="username" 
+                                    onChange={handleUsernameChange}
+                                    required />
                                 <label>Password:</label>
-                                <input type="password" name="password" required />
+                                <input 
+                                    type="password" 
+                                    value={password}
+                                    name="password" 
+                                    onChange={handlePasswordChange}
+                                    required />
                                 <button type="submit">Login</button>
                             </form>
                             <p onClick={() => setIsLogin(false)}>Don't have an account? Create one here.</p>
@@ -26,9 +46,19 @@ const Popup = ({ closePopup }) => {
                             <h2>Create Account</h2>
                             <form>
                                 <label>Username:</label>
-                                <input type="text" name="username" required />
+                                <input 
+                                    type="text" 
+                                    value={username}
+                                    name="username" 
+                                    onChange={handleUsernameChange}
+                                    required />
                                 <label>Password:</label>
-                                <input type="password" name="password" required />
+                                <input 
+                                    type="password" 
+                                    value={password}
+                                    name="password" 
+                                    onChange={handlePasswordChange}
+                                    required />
                                 <button type="submit">Create Account</button>
                             </form>
                         </div>
