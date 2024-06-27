@@ -29,7 +29,7 @@ const userNameSchema = new Schema ({
     }
 })
 
-// presave hook to encrypt user password on signup
+// pre-save hook to encrypt user password on signup
 userNameSchema.pre('save', function(next){
     const user = this
     if(!user.isModified('password')) return next()

@@ -37,6 +37,7 @@ authRouter.post('/login', async (req, res, next) => {
 
         return res.status(200).send({ message: 'Logged in Successfully', user: existingUser.withoutPassword(), token });
     } catch (error) {
+        console.error("Error logging in.", error)
         res.status(500).send({ error: 'Internal Server Error' });
         return next(error);
     }

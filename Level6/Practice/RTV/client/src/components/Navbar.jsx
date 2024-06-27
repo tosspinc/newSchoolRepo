@@ -20,7 +20,7 @@ export default function Navbar() {
         }
     }
 
-    const handlLogout = () => {
+    const handleLogout = () => {
         // logout code goes here.
         console.log("Logged Out")
     }

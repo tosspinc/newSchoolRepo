@@ -44,7 +44,7 @@ app.use("/api/pets", require("./routes/petProductsRouter.js"));
 app.use("/api/appliance", require("./routes/appliancePartRouter.js"))
 
 //login & create account route.
-app.use("/auth/userName", require("./routes/userNameRouter.js"))
+app.use("/auth/userName", require("./routes/authRouter.js"))
 
 
 // Error handling
