@@ -9,8 +9,12 @@ export default defineConfig({
       "/api": {
         target: "http://localhost:9000",
         changeOrigin: true,
-        secure: false
       },
+      "/auth":{//Add this to proxy
+        //auth requests
+          target: "http://localhost:9000/",
+          changeOrigin:true
+      }
     },
   }
 })
