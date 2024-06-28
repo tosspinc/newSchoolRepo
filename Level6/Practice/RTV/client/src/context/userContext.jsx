@@ -7,7 +7,7 @@ export const userContext = createContext();
 
 // Create an instance of axios
 const userAxios = axios.create({
-    baseURL: '/auth/User' // Adjusted to match your server route
+    baseURL: '/auth/User' 
 });
 
 userAxios.interceptors.request.use(config => {
@@ -29,6 +29,7 @@ export const UserProvider = ({ children }) => {
         if (token) {
             userAxios.get('/')
                 .then(response => {
+                    console.log("Fetched user data:", response.data)
                     setUser(response.data);
                 })
                 .catch(error => {
@@ -41,6 +42,7 @@ export const UserProvider = ({ children }) => {
         try {
             const response = await userAxios.post('/login', credentials);
             const { token, user } = response.data;
+            console.log("Login response user data: ", user)
             sessionStorage.setItem('token', token);
             setToken(token);
             setUser(user);
@@ -55,7 +57,7 @@ export const UserProvider = ({ children }) => {
         sessionStorage.removeItem('token');
         setToken('');
         setUser(null);
-        navigate('/login');
+        navigate('/');
     };
 
     return (

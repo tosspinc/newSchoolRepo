@@ -43,11 +43,36 @@
 
 }
 
+.user-info{
+    display: flex;
+    align-items: center;
+}
+
+.navbar-username {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: antiquewhite;
+    font-weight: bold;
+}
+
 .navright-login {
     margin-right: 30px;
     display: flex;
     align-items: center;
     background-color: firebrick;
+}
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+    color: bisque;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 25px;
+}
+
+.logout-button:hover {
+    text-decoration: underline;
 }
 
 /*images*/
@@ -66,13 +91,19 @@
 /*login items*/
 .login-logo {
     margin: 0;
-    padding: 5px;
+    padding: 0;
     height: 50px;
     width: 50px;
     margin-left: auto; /*pushes logo img to the right*/
+    margin-right: 25px;
     background-color: firebrick;
 }
   
 a.item.login {
+    background-color: transparent;
+}
+
+.item-login {
     background-color: firebrick;
+    border: none;
 }

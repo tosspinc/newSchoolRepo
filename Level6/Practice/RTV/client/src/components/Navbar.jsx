@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Popup from '../pages/Popup';
-
+import { userContext } from "../context/userContext";
 import '../CssFiles/navbar.css';
 
 export default function Navbar() {
     const [popupVisible, setPopupVisible] = useState(false)
     const navigate = useNavigate()
+    const { user, logout } = useContext(userContext)
+
 
     const togglePopup = () => {
         setPopupVisible(!popupVisible)
@@ -14,16 +16,13 @@ export default function Navbar() {
 
     const handleNavigation = (path) => {
         if (path === 'logout') {
-            handleLogout()
+            logout()
         } else {
             navigate(path)
         }
     }
 
-    const handleLogout = () => {
-        // logout code goes here.
-        console.log("Logged Out")
-    }
+    
     return (
         <nav className="navbar">
             <div className="navleft-logo">
@@ -38,14 +37,20 @@ export default function Navbar() {
                         <option value="/currentIssues">Current Issues</option>
                         <option value="/addNewIssue">Add New Issue</option>
                         <option value="/myPosts">My Posts</option>
-                        <option value="/logout">Logout</option>
-                    </select>
+                    </select>   
                 </div>
             </div>
-            <div className="navright-login">
-                <button className="item-login" onClick={togglePopup}>
-                    <img src="../src/assets/Imgs/Login.jpg" className="login-logo" />
-                </button>
+            <div className="navright-user">
+                {user ? (
+                    <div className="user-info">
+                        <span className="navbar-username">Welcome:  {`${user.username}`}</span>
+                        <button className="logout-button" onClick={logout}>Logout</button>
+                    </div>
+                ):(
+                    <button className="item-login" onClick={togglePopup}>
+                        <img src="../src/assets/Imgs/Login.jpg" className="login-logo" />    
+                    </button>
+                )}
             </div>
             {popupVisible && <Popup closePopup={togglePopup} />}
         </nav>

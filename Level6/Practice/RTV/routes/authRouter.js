@@ -34,7 +34,7 @@ authRouter.post('/login', async (req, res, next) => {
 
         // Generate token
         const token = jwt.sign({ id: existingUser._id, username: existingUser.username }, process.env.SECRET, { expiresIn: '1h' });
-
+        console.log("Login response user data:", existingUser.withoutPassword())
         return res.status(200).send({ message: 'Logged in Successfully', user: existingUser.withoutPassword(), token });
     } catch (error) {
         console.error("Error logging in.", error)
