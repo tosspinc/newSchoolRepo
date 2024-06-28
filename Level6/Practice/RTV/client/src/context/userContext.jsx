@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // Create a context for user
 export const userContext = createContext();
 
+
 // Create an instance of axios
 const userAxios = axios.create({
     baseURL: '/auth/User' 
@@ -21,22 +22,23 @@ userAxios.interceptors.request.use(config => {
 });
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [token, setToken] = useState(sessionStorage.getItem('token') || '');
-    const navigate = useNavigate();
+    const initState = { user: null, token: "", issues: [], errMsg: "" }
+    const [userState, setUserState] = useState(initState)
+    const navigate = useNavigate()
+
 
     useEffect(() => {
-        if (token) {
+        if (userState.token) {
             userAxios.get('/')
                 .then(response => {
                     console.log("Fetched user data:", response.data)
-                    setUser(response.data);
+                    setUserState(prevState => ({ ...prevState, user: response.data }));
                 })
                 .catch(error => {
                     console.error('Error fetching user:', error);
                 });
         }
-    }, [token]);
+    }, [userState.token]);
 
     const login = async (credentials) => {
         try {
@@ -44,8 +46,7 @@ export const UserProvider = ({ children }) => {
             const { token, user } = response.data;
             console.log("Login response user data: ", user)
             sessionStorage.setItem('token', token);
-            setToken(token);
-            setUser(user);
+            setUserState({ ...userState, user, token })
             navigate('/');
         } catch (error) {
             console.error('Error logging in:', error);
@@ -55,13 +56,12 @@ export const UserProvider = ({ children }) => {
 
     const logout = () => {
         sessionStorage.removeItem('token');
-        setToken('');
-        setUser(null);
+        setUserState(initState)
         navigate('/');
     };
 
     return (
-        <userContext.Provider value={{ user, login, logout }}>
+        <userContext.Provider value={{ userState, login, logout }}>
             {children}
         </userContext.Provider>
     );

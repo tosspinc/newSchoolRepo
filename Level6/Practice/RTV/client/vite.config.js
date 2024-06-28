@@ -13,7 +13,7 @@ export default defineConfig({
       "/auth":{//Add this to proxy
         //auth requests
           target: "http://localhost:9000/",
-          changeOrigin:true
+          changeOrigin:true,
       }
     },
   }

@@ -7,7 +7,7 @@ import '../CssFiles/navbar.css';
 export default function Navbar() {
     const [popupVisible, setPopupVisible] = useState(false)
     const navigate = useNavigate()
-    const { user, logout } = useContext(userContext)
+    const { userState, logout } = useContext(userContext)
 
 
     const togglePopup = () => {
@@ -22,7 +22,6 @@ export default function Navbar() {
         }
     }
 
-    
     return (
         <nav className="navbar">
             <div className="navleft-logo">
@@ -41,12 +40,12 @@ export default function Navbar() {
                 </div>
             </div>
             <div className="navright-user">
-                {user ? (
+                {userState.user ? (
                     <div className="user-info">
-                        <span className="navbar-username">Welcome:  {`${user.username}`}</span>
+                        <span className="navbar-username">Welcome:  {`${userState.user.username}`}</span>
                         <button className="logout-button" onClick={logout}>Logout</button>
                     </div>
-                ):(
+                ) : (
                     <button className="item-login" onClick={togglePopup}>
                         <img src="../src/assets/Imgs/Login.jpg" className="login-logo" />    
                     </button>
