@@ -11,7 +11,7 @@ const userAxios = axios.create({
 });
 
 userAxios.interceptors.request.use(config => {
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,7 +26,7 @@ export const UserProvider = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token');
+        const token = localStorage.getItem('token');
         if (token) {
             userAxios.get('/me') // Adjust this endpoint to fetch the current user
                 .then(response => {
@@ -44,7 +44,7 @@ export const UserProvider = ({ children }) => {
             const response = await userAxios.post('/login', credentials);
             const { token, user } = response.data;
             console.log("Login response user data: ", user);
-            sessionStorage.setItem('token', token);
+            localStorage.setItem('token', token);
             setUserState({ ...userState, user, token });
             navigate('/');
         } catch (error) {
@@ -57,7 +57,7 @@ export const UserProvider = ({ children }) => {
         try {
             const response = await userAxios.post('/signup', credentials);
             const { token, user } = response.data;
-            sessionStorage.setItem('token', token);
+            localStorage.setItem('token', token);
             setUserState({ ...userState, user, token });
             navigate('/');
         } catch (error) {
@@ -67,7 +67,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const logout = () => {
-        sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         setUserState(initState);
         navigate('/');
     };
