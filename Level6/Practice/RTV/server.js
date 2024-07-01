@@ -27,7 +27,6 @@ const connectToDb = async () => {
         console.log("Connected to MongoDB.")
     } catch (error) {
         console.error("Error connecting to the MongoDB: ", error);
-        console.error("Error Stack: ", error.stack)
         process.exit(1);
     }
 };
@@ -35,8 +34,7 @@ const connectToDb = async () => {
 connectToDb();
 
 // Routes
-//app.use('/api/User', require('./routes/authRouter.js'));
-app.use('/auth/User', require('./routes/authRouter.js'))
+app.use('/api/auth/User', require('./routes/authRouter.js'))
 app.use('/api/issues', require('./routes/currentIssuesRouter.js'));
 app.use('/api/comments', require('./routes/CommentsRouter.js'));
 

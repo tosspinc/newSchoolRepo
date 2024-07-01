@@ -30,9 +30,8 @@ const Popup = ({ closePopup }) => {
 
     const handleSignUpSubmit = async (event) => {
         event.preventDefault();
-        // Implement signup logic here
         try {
-            // await signup({ username, password });
+            await signup({ username, password });
             closePopup();
         } catch (error) {
             console.error('Signup failed:', error);

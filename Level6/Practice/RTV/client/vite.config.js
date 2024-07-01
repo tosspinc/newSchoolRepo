@@ -12,8 +12,9 @@ export default defineConfig({
       },
       "/auth":{//Add this to proxy
         //auth requests
-          target: "http://localhost:9000/",
+          target: "http://localhost:9000/api/auth/User",
           changeOrigin:true,
+          rewrite: (path) => path.replace(/^\/auth/, '')
       }
     },
   }

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { userContext } from '../context/userContext';
 
-const Signup = () => {
+const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const { signup } = useContext(userContext);
+    const { login } = useContext(userContext);
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -17,38 +17,38 @@ const Signup = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await signup({ username, password });
+            await login({ username, password });
         } catch (error) {
-            console.error('Signup failed:', error);
+            console.error('Login failed:', error);
         }
     };
 
     return (
         <div>
-            <h2>Create Account</h2>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <label>Username:</label>
                 <input 
                     type="text" 
-                    value={username}
+                    value={username} 
                     name="username" 
                     onChange={handleUsernameChange}
-                    placeholder="Username"
+                    placeholder="Username" 
                     required 
                 />
                 <label>Password:</label>
                 <input 
                     type="password" 
-                    value={password}
+                    value={password} 
                     name="password" 
                     onChange={handlePasswordChange}
-                    placeholder="Password"
+                    placeholder="Password" 
                     required 
                 />
-                <button type="submit">Create Account</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     );
 };
 
-export default Signup;
+export default Login;

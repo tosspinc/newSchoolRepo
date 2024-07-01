@@ -42,7 +42,9 @@ export default function Navbar() {
             <div className="navright-user">
                 {userState.user ? (
                     <div className="user-info">
-                        <span className="navbar-username">Welcome:  {`${userState.user.username}`}</span>
+                        {/*The following code is using optional chaining method. */}
+                        <span className="navbar-username">Welcome: {userState.user?.username  || 'Guest'}</span>
+                        {/* <span className="navbar-username">Welcome:  {`${userState.user.username}`}</span> */}
                         <button className="logout-button" onClick={logout}>Logout</button>
                     </div>
                 ) : (
